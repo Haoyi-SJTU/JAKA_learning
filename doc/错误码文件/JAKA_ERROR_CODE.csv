@@ -1,0 +1,512 @@
+,,,,,,,,
+控制器部分错误代码,,,,,,,,
+#define,ROBOT_POWERED_OFF,0x0F0001,1,machine is now off please turn on it,机器人关闭 请开启,machine is now off please turn on it,1,ロボットが停止中で、起動ください 
+#define,ROBOT_NOT_ENABLED,0x0F0002,1,machine is not enabled,机器人没使能,machine is not enabled,1,ロボットが動かせていません 
+#define,OPERATION_IN_WRONG_MODE,0x0F0003,2,operation is not supported in current mode,在此模式下 操作不允许,operation is not supported in current mode,1,該当モードでの操作が許しません 
+#define,KINEMATICS_FAILED,0x0F0004,1,failed to do the inverse kinematics,运动学逆解失败,failed to do the inverse kinematics,1,運動学逆解に失敗しました 
+#define,INFINITE_JOINT_POSITION,0x0F0005,1,infinite joint position command was given,位置设置过大,infinite joint position command was given,1,位置設置過大 
+#define,JOINT_HIT_POS_HLIMIT,0x0F0006,1,cannot move on since it hits the joint's positive hard limit,机器人关节达到正的硬限位 不可运动,cannot move on since it hits the joint's positive hard limit,1,ロボット関節が正のハードリミットに到着すると動きません 
+#define,JOINT_HIT_NEG_HLIMIT,0x0F0007,1,cannot move on since it hits the joint's negative hard limit,机器人关节达到负的硬限位 不可运动,cannot move on since it hits the joint's negative hard limit,1,ロボット関節が負のハードリミットに到着すると動きません 
+#define,JOINT_HIT_POS_SLIMIT,0x0F0008,1,cannot move on since it hits the joint's positive soft limit,机器人关节达到正的软限位 不可运动,cannot move on since it hits the joint's positive soft limit,1,ロボット関節が正のソフトリミットに到着すると動きません 
+#define,JOINT_HIT_NEG_SLIMIT,0x0F0009,1,cannot move on since it hits the joint's negative soft limit,机器人关节达到负的软限位 不可运动,cannot move on since it hits the joint's negative soft limit,1,ロボット関節が負のソフトリミットに到着すると動きません 
+#define,AXIS_EXCEED_POS_LIMIT,0x0F000A,1,he target position exceeds the axis positive limit,目标位置超过正的最大位置限制,he target position exceeds the axis positive limit,1,目標位置が正の最大位置制限を超えました 
+#define,AXIS_EXCEED_NEG_LIMIT,0x0F000B,1,the target position exceeds the axis negative limit,目标位置超过负的最大位置限制,the target position exceeds the axis negative limit,1,目標位置が負の最大位置制限を超えました 
+#define,JOG_UNSUPPORTED_WHEN_HOMING,0x0F000E,1,cannot do jog operation when homing is in progress,home阶段没法jog,cannot do jog operation when homing is in progress,1,home阶段没法jog 
+#define,INVALID_JOINT_NUM,0x0F000F,1,the commanded joint number is invalid,指令关节无效,the commanded joint number is invalid,1,関節指令無効 
+#define,INVALID_VELOCITY,0x0F0010,1,the commanded velocity is invalid,指令速度无效,the commanded velocity is invalid,1,指令速度無効 
+#define,TARGET_POS_EXCEED_LIMIT,0x0F0011,1,the target position exceeds the mechine's limits,目标位置超过机器限制,the target position exceeds the mechine's limits,1,目標位置が機器リミット超過 
+#define,HOME_IN_NONE_JOINT_MODE,0x0F0012,1,cannot do home operation since it's not in joint mode now,非关节模式不能进行home操作,cannot do home operation since it's not in joint mode now,1,非関節モードでHOME操作は許しません 
+#define,HOMING_ALRADY_IN_PROGRESS,0x0F0013,1,homing is already in pregress,home正在进行,homing is already in pregress,1,HOME起動中 
+#define,EXIT_PROTECT_IN_WRONG_MODE,0x0F0014,1,failed to exit protective mode,退出保护模式失败,failed to exit protective mode,1,保護模式より退出失敗 
+#define,ROBOT_NOT_TURNED_ON,0x0F0015,1,failed to do the operaion since the machine is now not turned on,机器人未启动,failed to do the operaion since the machine is now not turned on,1,ロボットが未起動 
+#define,ROBOT_ON_SOFT_LIMIT,0x0F0016,1,the mechine is now on soft limit,机器人关节达到软限位,the mechine is now on soft limit,1,ロボット関節がソフトリミットに到着 
+#define,TARGET_POS_OUTOF_REACH,0x0F0017,1,the target position is out of reach,目标位置不可达,the target position is out of reach,1,目標位置到着不能 
+#define,STOP_ON_SIGULARITY,0x0F0018,1,Singularity position protective stop,到达奇异点保护性停止,Singularity position protective stop,1,特異点に到着すると保護性停止 
+#define,CAN_DEVICE_INIT_FAILED       ,0x0F0019,1,can device initialize failed,CAN设备初始化失败,can device initialize failed,1,CAN設備初期化に失敗 
+#define,FAILED_TO_ADD_LINE,0x0F0020,1,failed to move line to the target position,直线运动到目标位置失败,failed to move line to the target position,1,目標位置までの直線性運動が失敗 
+#define,UNSUPPORTED_ROBOT_MODEL       ,0x0F0021,1,model of connected robot is now unsupported,机器人型号不支持,model of connected robot is now unsupported,1,ロボット型式にサポートしない 
+#define,INVALID_ROBOT_SERIAL_NUM       ,0x0F0022,1,invalid robot serial number,机器人序列号无效,invalid robot serial number,1,ロボットシリアル番号無効 
+#define,INVALID_IDENTIFY_TRAJ_INDEX,0x0F0023,1,invalid payload identification trajectory,负载辨识轨迹索引无效,invalid payload identification trajectory,1,負荷認識軌跡インデックスが無効 
+#define,CANNOT_SET_RAPIDRATE_IN_REDUCE,0x0F0024,2,cannot set rapid rate in reduced mode,缩减模式下无法设置倍率,cannot set rapid rate in reduced mode,1,縮小モードでは倍率設定ができず。 
+#define,NONCOMPLIANT_IDENTIFY_TRAJ,0x0F0025,1,non-compliant identify trajectory,负载辨识轨迹定义不满足规范,non-compliant identify trajectory,1,負荷認識軌跡定義が仕様に不満足 
+#define,SERVO_OFF_BEFORE_POWER_OFF,0x0F0026,2,please servo off first before powering off the robot,关电源之前请下使能,please servo off first before powering off the robot,1,電源を切る前に動かせないよう。 
+#define,CANNOT_SERVO_OFF_WHEN_PROG_RUN,0x0F0027,2,cannot disable the robot when a program is running,程序运行期间不能下使能,cannot disable the robot when a program is running,1,プログラム運行中には動き保持する。 
+,,,,,,,,
+#define,JOINT_EXCEED_VEL_LIMIT_J1   ,0x000030,1,joint 1 velocity exceed the limit,关节一运动速度超过限制,joint 1 velocity exceed the limit,1,関節一運動速度がリミット超過 
+#define,JOINT_EXCEED_VEL_LIMIT_J2   ,0x010030,1,joint 2 velocity exceed the limit,关节二运动速度超过限制,joint 2 velocity exceed the limit,1,関節二運動速度がリミット超過 
+#define,JOINT_EXCEED_VEL_LIMIT_J3    ,0x020030,1,joint 3 velocity exceed the limit,关节三运动速度超过限制,joint 3 velocity exceed the limit,1,関節三運動速度がリミット超過 
+#define,JOINT_EXCEED_VEL_LIMIT_J4   ,0x030030,1,joint 4 velocity exceed the limit,关节四运动速度超过限制,joint 4 velocity exceed the limit,1,関節四運動速度がリミット超過 
+#define,JOINT_EXCEED_VEL_LIMIT_J5   ,0x040030,1,joint 5 velocity exceed the limit,关节五运动速度超过限制,joint 5 velocity exceed the limit,1,関節五運動速度がリミット超過 
+#define,JOINT_EXCEED_VEL_LIMIT_J6   ,0x050030,1,joint 6 velocity exceed the limit,关节六运动速度超过限制,joint 6 velocity exceed the limit,1,関節六運動速度がリミット超過 
+#define,JOINT_HIT_POS_SLIMIT_J1,0x000031,1,hits the joint 1's positive soft limit,关节一到达正软限位,hits the joint 1's positive soft limit,1,関節一がプラスルソフトリミットに到着 
+#define,JOINT_HIT_POS_SLIMIT_J2,0x010031,1,hits the joint 2's positive soft limit,关节二到达正软限位,hits the joint 2's positive soft limit,1,関節二がプラスルソフトリミットに到着 
+#define,JOINT_HIT_POS_SLIMIT_J3,0x020031,1,hits the joint 3's positive soft limit,关节三到达正软限位,hits the joint 3's positive soft limit,1,関節三がプラスルソフトリミットに到着 
+#define,JOINT_HIT_POS_SLIMIT_J4,0x030031,1,hits the joint 4's positive soft limit,关节四到达正软限位,hits the joint 4's positive soft limit,1,関節四がプラスルソフトリミットに到着 
+#define,JOINT_HIT_POS_SLIMIT_J5,0x040031,1,hits the joint 5's positive soft limit,关节五到达正软限位,hits the joint 5's positive soft limit,1,関節五がプラスルソフトリミットに到着 
+#define,JOINT_HIT_POS_SLIMIT_J6,0x050031,1,hits the joint 6's positive soft limit,关节六到达正软限位,hits the joint 6's positive soft limit,1,関節六がプラスルソフトリミットに到着 
+#define,JOINT_HIT_NEG_SLIMIT_J1,0x000032,1,hits the joint 1's negative soft limit,关节一到达负软限位,hits the joint 1's negative soft limit,1,関節一がマイナスルソフトリミットに到着 
+#define,JOINT_HIT_NEG_SLIMIT_J2,0x010032,1,hits the joint 2's negative soft limit,关节二到达负软限位,hits the joint 2's negative soft limit,1,関節二がマイナスルソフトリミットに到着 
+#define,JOINT_HIT_NEG_SLIMIT_J3,0x020032,1,hits the joint 3's negative soft limit,关节三到达负软限位,hits the joint 3's negative soft limit,1,関節三がマイナスルソフトリミットに到着 
+#define,JOINT_HIT_NEG_SLIMIT_J4,0x030032,1,hits the joint 4's negative soft limit,关节四到达负软限位,hits the joint 4's negative soft limit,1,関節四がマイナスルソフトリミットに到着 
+#define,JOINT_HIT_NEG_SLIMIT_J5,0x040032,1,hits the joint 5's negative soft limit,关节五到达负软限位,hits the joint 5's negative soft limit,1,関節五がマイナスルソフトリミットに到着 
+#define,JOINT_HIT_NEG_SLIMIT_J6,0x050032,1,hits the joint 6's negative soft limit,关节六到达负软限位,hits the joint 6's negative soft limit,1,関節六がマイナスルソフトリミットに到着 
+,,,,,,,,
+#define,SINGULARITY_PROTECTION,0x0F0033,1,arrive sigularity position protective stop,到达奇异点保护性停止,arrive sigularity position protective stop,1,特異点到着すると保護性停止 
+#define,COLLISION_PROTECTION,0x0F0034,1,collision detected pretective stop,检测到碰撞 保护性停止,collision detected pretective stop,1,衝突を検測すると保護性停止 
+,,,,,,,,
+#define,JOG_TARGET_EXCEED_POS_SLIMIT_J1,0x000035,1,cannot jog joint 1 further past max soft limit,JOG目标位置超过关节一正软限位,cannot jog joint 1 further past max soft limit,1,JOG目標位置が関節一のプラスルソフトリミット超過 
+#define,JOG_TARGET_EXCEED_POS_SLIMIT_J2,0x010035,1,cannot jog joint 2 further past max soft limit,JOG目标位置超过关节二正软限位,cannot jog joint 2 further past max soft limit,1,JOG目標位置が関節二のプラスルソフトリミット超過 
+#define,JOG_TARGET_EXCEED_POS_SLIMIT_J3,0x020035,1,cannot jog joint 3 further past max soft limit,JOG目标位置超过关节三正软限位,cannot jog joint 3 further past max soft limit,1,JOG目標位置が関節三のプラスルソフトリミット超過 
+#define,JOG_TARGET_EXCEED_POS_SLIMIT_J4,0x030035,1,cannot jog joint 4 further past max soft limit,JOG目标位置超过关节四正软限位,cannot jog joint 4 further past max soft limit,1,JOG目標位置が関節四のプラスルソフトリミット超過 
+#define,JOG_TARGET_EXCEED_POS_SLIMIT_J5,0x040035,1,cannot jog joint 5 further past max soft limit,JOG目标位置超过关节五正软限位,cannot jog joint 5 further past max soft limit,1,JOG目標位置が関節五のプラスルソフトリミット超過 
+#define,JOG_TARGET_EXCEED_POS_SLIMIT_J6,0x050035,1,cannot jog joint 6 further past max soft limit,JOG目标位置超过关节六正软限位,cannot jog joint 6 further past max soft limit,1,JOG目標位置が関節六のプラスルソフトリミット超過 
+#define,JOG_TARGET_EXCEED_NEG_SLIMIT_J1,0x000036,1,cannot jog joint 1 further past min soft limit,JOG目标位置超过关节一负软限位,cannot jog joint 1 further past min soft limit,1,JOG目標位置が関節一のマイナスルソフトリミット超過 
+#define,JOG_TARGET_EXCEED_NEG_SLIMIT_J2,0x010036,1,cannot jog joint 2 further past min soft limit,JOG目标位置超过关节二负软限位,cannot jog joint 2 further past min soft limit,1,JOG目標位置が関節二のマイナスルソフトリミット超過 
+#define,JOG_TARGET_EXCEED_NEG_SLIMIT_J3,0x020036,1,cannot jog joint 3 further past min soft limit,JOG目标位置超过关节三负软限位,cannot jog joint 3 further past min soft limit,1,JOG目標位置が関節三のマイナスルソフトリミット超過 
+#define,JOG_TARGET_EXCEED_NEG_SLIMIT_J4,0x030036,1,cannot jog joint 4 further past min soft limit,JOG目标位置超过关节四负软限位,cannot jog joint 4 further past min soft limit,1,JOG目標位置が関節四のマイナスルソフトリミット超過 
+#define,JOG_TARGET_EXCEED_NEG_SLIMIT_J5,0x040036,1,cannot jog joint 5 further past min soft limit,JOG目标位置超过关节五负软限位,cannot jog joint 5 further past min soft limit,1,JOG目標位置が関節五のマイナスルソフトリミット超過 
+#define,JOG_TARGET_EXCEED_NEG_SLIMIT_J6,0x050036,1,cannot jog joint 6 further past min soft limit,JOG目标位置超过关节六负软限位,cannot jog joint 6 further past min soft limit,1,JOG目標位置が関節六のマイナスルソフトリミット超過 
+,,,,,,,,
+#define,DRAG_CANNOT_ENABLE_ON_LIMIT  ,0x0F0040,1,On Soft limit position can not get into drag mode,在软限位上没法进入拖拽模式,On Soft limit position can not get into drag mode,1,ソフトリミットにドラッグモード不可能 
+#define,DRAG_EXCEED_JOINT_LIMIT ,0x0F0041,1,Drag exceeding soft limit it will quit drag mode,拖拽超出软限位 将退出拖拽,Drag exceeding soft limit it will quit drag mode,1,ソフトリミットにオーバーし、ドラッグモードより退出 
+#define,DRAG_NEARBY_SOFT_LIMIT_J1  ,0x000042,1,joint 1 is now nearby the soft limit,关节一即将达到软限位,joint 1 is now nearby the soft limit,1,関節一がソフトリミットに接近 
+#define,DRAG_NEARBY_SOFT_LIMIT_J2  ,0x010042,1,joint 2 is now nearby the soft limit,关节二即将达到软限位,joint 2 is now nearby the soft limit,1,関節二がソフトリミットに接近 
+#define,DRAG_NEARBY_SOFT_LIMIT_J3 ,0x020042,1,joint 3 is now nearby the soft limit,关节三即将达到软限位,joint 3 is now nearby the soft limit,1,関節三がソフトリミットに接近 
+#define,DRAG_NEARBY_SOFT_LIMIT_J4,0x030042,1,joint 4 is now nearby the soft limit,关节四即将达到软限位,joint 4 is now nearby the soft limit,1,関節四がソフトリミットに接近 
+#define,DRAG_NEARBY_SOFT_LIMIT_J5,0x040042,1,joint 5 is now nearby the soft limit,关节五即将达到软限位,joint 5 is now nearby the soft limit,1,関節五がソフトリミットに接近 
+#define,DRAG_NEARBY_SOFT_LIMIT_J6 ,0x050042,1,joint 6 is now nearby the soft limit,关节六即将达到软限位,joint 6 is now nearby the soft limit,1,関節六がソフトリミットに接近 
+#define,CANNOT_DRAG_WHEN_SERVOOFF,0x0F0043,1, cannot enter drage mode when robot is disabled,机器人未使能无法进入拖拽, cannot enter drage mode when robot is disabled,1,ロボットが未給電状態で、ドラッグモード使えません。 
+#define,CANNOT_DRAG_DURING_MOVEMENT,0x0F0044,2,cannot enter drage mode when robot is in movement,机器人正在运动无法进入拖拽,cannot enter drage mode when robot is in movement,1,ロボットが運動中で、ドラッグモード使えません。 
+,,,,,,,,
+#define,ADMIT_CANNOT_ENABLE_WITHOUT_SENSOR,0x0F0050,1,cannot enable admittance control since sensor is not ready,力矩传感器未就绪，无法使能导纳控制,cannot enable admittance control since sensor is not ready,1,トルクセンサが未整備で、アドミタンス制御不可 
+#define,ADMIT_CANNOT_SET_MODE_IN_OPERATION,0x0F0051,2,cannot switch senor mode when in admittance control,导纳控制过程中无法切换力矩传感器模式,cannot switch senor mode when in admittance control,1,アドミタンス制御中にトルクセンサモードの切り替えが不可 
+#define,SENSOR_FAULT_DURING_ADMITTANCE,0x0F0052,1,torque sensor fault detected during admittance control,导纳控制过程中力矩传感器故障,torque sensor fault detected during admittance control,1,アドミタンス制御中のトルクセンサ故障 
+#define,CANNOT_STEP_WHILE_RUNNING,0x0F0054,2,cannot step while already executing,单步调试期间不能运行程序,cannot step while already executing,1,シングルステップのデバッグ中にはプログラム実行不能 
+#define,CANNOT_SET_COLLISION_SENSITIVITY,0x0F0055,2,cannot set collision sensitivity in drag mode or force control mode,拖拽期间不能设置碰撞灵敏度,cannot set collision sensitivity in drag mode or force control mode,1,ドラッグモードで衝突感度設定不能 
+#define,CANNOT_ACCESS_EXTIO_SINCE_OFFLINE           ,0x0F0056,1,cannot access extended IO module since it's not running,扩展IO模块未运行 无法访问,cannot access extended IO module since it's not running,1,拡張IOモジュールが実行されていないため、アクセスに失敗しました
+,,,,,,,,
+#define,DRIVE_ENABLE_TIMEOUT     ,0x0F1001,1,timeout when servo on the drives,使能超时 请重新上电,timeout when servo on the drives,1,動かすタイムアウト、再給電してください 
+#define,DRIVE_QUERY_VERSION_TIMEOUT,0x0F1002,1,query servo version timeout,查询伺服版本号超时,query servo version timeout,1,サーボバージョン番号クエリータイムアウト 
+#define,DRIVE_ERR_CONNECT_ERR_J1 ,0x001002,1,joint 1 CAN connection error,关节一CAN连接异常,joint 1 CAN connection error,1,関節一CAN接続異常  
+#define,DRIVE_ERR_CONNECT_ERR_J2  ,0x011002,1,joint 2 CAN connection error,关节二CAN连接异常,joint 2 CAN connection error,1,関節二CAN接続異常  
+#define,DRIVE_ERR_CONNECT_ERR_J3,0x021002,1,joint 3 CAN connection error,关节三CAN连接异常,joint 3 CAN connection error,1,関節三CAN接続異常  
+#define,DRIVE_ERR_CONNECT_ERR_J4,0x031002,1,joint 4 CAN connection error,关节四CAN连接异常,joint 4 CAN connection error,1,関節四CAN接続異常  
+#define,DRIVE_ERR_CONNECT_ERR_J5  ,0x041002,1,joint 5 CAN connection error,关节五CAN连接异常,joint 5 CAN connection error,1,関節五CAN接続異常  
+#define,DRIVE_ERR_CONNECT_ERR_J6  ,0x051002,1,joint 6 CAN connection error,关节六CAN连接异常,joint 6 CAN connection error,1,関節六CAN接続異常  
+#define,JOINT_AMPLIFIER_FAULT_J1,0x001003,1,joint 1 amplifier fault detected,关节一驱动器故障,joint 1 amplifier fault detected,1,関節一駆動機構故障 
+#define,JOINT_AMPLIFIER_FAULT_J2,0x011003,1,joint 2 amplifier fault detected,关节二驱动器故障,joint 2 amplifier fault detected,1,関節二駆動機構故障 
+#define,JOINT_AMPLIFIER_FAULT_J3,0x021003,1,joint 3 amplifier fault detected,关节三驱动器故障,joint 3 amplifier fault detected,1,関節三駆動機構故障 
+#define,JOINT_AMPLIFIER_FAULT_J4,0x031003,1,joint 4 amplifier fault detected,关节四驱动器故障,joint 4 amplifier fault detected,1,関節四駆動機構故障 
+#define,JOINT_AMPLIFIER_FAULT_J5,0x041003,1,joint 5 amplifier fault detected,关节五驱动器故障,joint 5 amplifier fault detected,1,関節五駆動機構故障 
+#define,JOINT_AMPLIFIER_FAULT_J6,0x051003,1,joint 6 amplifier fault detected,关节六驱动器故障,joint 6 amplifier fault detected,1,関節六駆動機構故障 
+#define,JOINT_FOLLOWING_ERROR_J1,0x001004,1,joint 1 following error detected,关节一跟随误差过大,joint 1 following error detected,1,関節一追従誤差過大 
+#define,JOINT_FOLLOWING_ERROR_J2,0x011004,1,joint 2 following error detected,关节二跟随误差过大,joint 2 following error detected,1,関節二追従誤差過大 
+#define,JOINT_FOLLOWING_ERROR_J3,0x021004,1,joint 3 following error detected,关节三跟随误差过大,joint 3 following error detected,1,関節三追従誤差過大 
+#define,JOINT_FOLLOWING_ERROR_J4,0x031004,1,joint 4 following error detected,关节四跟随误差过大,joint 4 following error detected,1,関節四追従誤差過大 
+#define,JOINT_FOLLOWING_ERROR_J5,0x041004,1,joint 5 following error detected,关节五跟随误差过大,joint 5 following error detected,1,関節五追従誤差過大 
+#define,JOINT_FOLLOWING_ERROR_J6,0x051004,1,joint 6 following error detected,关节六跟随误差过大,joint 6 following error detected,1,関節六追従誤差過大 
+,,,,,,,,
+#define,PROGRAM_INVALID_SYNTAX,0x0F2000,1,syntax error detected in the program file,编程文件语法错误,syntax error detected in the program file,1,プログラミングファイル文法エラー 
+#define,PROGRAM_FILE_NOT_OPEN,0x0F2001,1,no program file is opened,没有编程文件打开,no program file is opened,1,開きているプログラミングファイルなし 
+#define,PROGRAM_FILE_FAILED_OPEN,0x0F2002,1,failed to open the program file,编程文件打开失败,failed to open the program file,1,プログラミングファイルのオープンに失敗 
+#define,PROGRAM_FILE_FAILED_CLOSE,0x0F2003,1,failed to close the program file,编程文件关闭失败,failed to close the program file,1,プログラミングファイルのクローズに失敗 
+#define,INTERP_ERR_TEMP,0x0F2010,1,Error,解析错误,Error,1,エラー分析 
+#define,INTERP_ERR_PYCALL_FAILED,0x0F2011,1,PyCall()Error,PyCall()失败,PyCall()Error,1,PyCall()失敗 
+#define,INTERP_ERR_ASSERT_FAILED,0x0F2012,1,Asset Error,解析断言失败,Asset Error,1,断言分析失敗 
+#define,INTERP_ERR_ZERO_RADIUS_ARC,0x0F2013,1,Error Radius is zero,解析失败，圆弧半径为零,Error Radius is zero,1,分析失敗、円弧半径はゼロ 
+#define,INTERP_ERR_SYNTAX_FAILED,0x0F2014,1,Syntax Error,解析失败，语法错误,Syntax Error,1,分析失敗、文法エラー 
+#define,INTERP_ERR_SOCKET_CREATE,0x0F2015,1,Net Connect Error,网络连接失败,Net Connect Error,1,ネットとの接続失敗 
+#define,INTERP_ERR_SOCKET_CONNECT,0x0F2016,1,Connect Server Error,连接服务端失败,Connect Server Error,1,サーバとの接続失敗 
+#define,INTERP_ERR_SOCKET_NO_CONNECT,0x0F2017,1,communication failure since no connection is established,通讯失败未连接服务器,communication failure since no connection is established,1,通信失敗、サーバに接続エラー 
+#define,INTERP_ERR_SOCKET_RECV_DATA ,0x0F2018,1,failed to receive data via tcp/ip connection,TCP/IP接收数据失败,failed to receive data via tcp/ip connection,1,TCP/IPデータ受信失敗 
+#define,INTERP_ERR_SOCKET_SEND_DATA,0x0F2019,1,failed to send data via tcp/ip connection,TCP/IP发送数据失败,failed to send data via tcp/ip connection,1,TCP/IPデータ送信失敗 
+#define,INTERP_ERR_LOAD_2D_CFG ,0x0F201A,1,load 2D Vision config failed!,加载2D视觉配置失败,load 2D Vision config failed!,1,2D視覚配置の読み込み失敗 
+#define,INTERP_ERR_INTERNAL         ,0x0F201B,1,internal error,内部错误,internal error,1,内部エラー 
+#define,INTERP_ERR_PARAMETER_NOT_TERMINATED,0x0F201C,1,Named parameter not terminated,作业程序语法错误,Named parameter not terminated,1,作業手順文法エラー 
+#define,INTERP_ERR_EOF_NO_PERCENT_SIGN  ,0x0F201D,1,File ended with no percent sign or program end,作业程序语法错误,File ended with no percent sign or program end,1,作業手順文法エラー 
+#define,INTERP_ERR_INVALID_P_WORD       ,0x0F201E  ,1,invalid P-word with M66,作业程序语法错误,invalid P-word with M66,1,作業手順文法エラー 
+#define,INTERP_ERR_UNKNOWN_MOTION_CODE  ,0x0F201F,1,unknown motion code,作业程序语法错误,unknown motion code,1,作業手順文法エラー 
+#define,INTERP_ERR_INDEX_INCORRECT_AXIS ,0x0F2020  ,1,trying to index incorrect axis,作业程序语法错误,trying to index incorrect axis,1,作業手順文法エラー 
+#define,INTERP_ERR_FUNCTION_NOT_CALLED  ,0x0F2021  ,1,function should not have been called,方法不该被调用,function should not have been called,1,方法徴用不可 
+#define,INTERP_ERR_UNKNOWN_OPERATION    ,0x0F2022 ,1,unknown operation,未知操作,unknown operation,1,未知操作 
+#define,INTERP_ERR_BAD_NUMBER_FORMAT    ,0x0F2023 ,1,bad number format,错误数据格式,bad number format,1,エラーデータフォーマット 
+#define,INTERP_ERR_PARAMETER_NOT_DEFINED,0x0F2024  ,1,parameter not defined,参数未定义,parameter not defined,1,パラメータが未定義 
+#define,INTERP_ERR_OPEN_FILE_FAILED     ,0x0F2025 ,1,open file failed,打开文件失败,open file failed,1,ファイルが開けられない 
+#define,INTERP_ERR_KEY_NOT_FOUND_IN_INI ,0x0F2026,1,key not found in INI file,作业程序语法错误,key not found in INI file,1,作業手順文法エラー 
+#define,INTERP_ERR_OUT_OF_MEMORY        ,0x0F2027 ,1,Out of memory,内存不足,Out of memory,1,メモリ不足 
+#define,INTERP_ERR_RETURN_VALUE_TYPE    ,0x0F2028 ,1,Error of return value type,返回值类型错误,Error of return value type,1,戻り値タイプエラー 
+#define,INTERP_ERR_TOO_MANY_SUBROUTINE_LEVELS,0x0F2029,1,Too many subroutine levels,作业程序语法错误,Too many subroutine levels,1,作業手順文法エラー 
+#define,INTERP_ERR_CANNOT_ADD_PARAMETER ,0x0F202A  ,1,can not add parameter,不能添加参数,can not add parameter,1,パラメータの追加が不可 
+#define,INTERP_ERR_USER_DEFINED         ,0x0F202B,1,user defined error,用户定义错误,user defined error,1,ユーザ定義エラー 
+#define,INTERP_ERR_NON_INTEGER_FOR_INTEGER,0x0F202C,1,non integer value for integer,作业程序语法错误,non integer value for integer,1,作業手順文法エラー 
+#define,INTERP_ERR_UNEXPECT_CHARACTER_AFTER_O_WORD ,0x0F202D,1,unexpect character after o-word,作业程序语法错误,unexpect character after o-word,1,作業手順文法エラー 
+#define,INTERP_ERR_UNKNOWN_OPERATION_NAME_STARTING ,0x0F202E   ,1,Unknown operation name starting,作业程序语法错误,Unknown operation name starting,1,作業手順文法エラー 
+#define,INTERP_ERR_UNCLOSED_EXPRESSION  ,0x0F202F,1,unclosed expression,作业程序语法错误,unclosed expression,1,作業手順文法エラー 
+#define,INTERP_ERR_UNKNOWN_WORD_STARTING,0x0F2030,1,Unknown word starting,作业程序语法错误,Unknown word starting,1,作業手順文法エラー 
+#define,INTERP_ERR_UNKNOWN_WORD_UNARY_OPERATION    ,0x0F2031   ,1,Unknown word where unary operation could be,作业程序语法错误,Unknown word where unary operation could be,1,作業手順文法エラー 
+#define,INTERP_ERR_UNKNOWN_COMMAND_IN_O_LINE,0x0F2032  ,1,Unknown control command in o word,作业程序语法错误,Unknown control command in o word,1,作業手順文法エラー 
+#define,INTERP_ERR_COMMAND_TOO_LONG     ,0x0F2033 ,1,Command too long,指令过长,Command too long,1,指令長すぎ 
+#define,INTERP_ERR_PARAMETER_FILE_OUTOF_,0x0F2034,1,Parameter file out of order,作业程序语法错误,Parameter file out of order,1,作業手順文法エラー 
+#define,INTERP_ERR_UNHANDLED_INDEX      ,0x0F2035  ,1,unhandled index,作业程序语法错误,unhandled index,1,作業手順文法エラー 
+#define,INTERP_ERR_FILE_NOT_OPENED      ,0x0F2036  ,1,file not opened,文件没有打开,file not opened,1,ファイルが開けられない 
+#define,INTERP_ERR_REDEFINITION         ,0x0F2037 ,1,redefined,重复定义,redefined,1,繰り返す定義 
+#define,INTERP_ERR_UNKNOWN_OWORD_NUMBER ,0x0F2038,1,Unknown o-word number,作业程序语法错误,Unknown o-word number,1,作業手順文法エラー 
+#define,INTERP_ERR_CANNOT_REOPEN_FILE   ,0x0F2039,1,can not reopen file,重复打开文件,can not reopen file,1,ファイルを繰り返し開く 
+#define,INTERP_ERR_SOCK_INVALIDID,0x0F2050,1,invalid socket id,socket id 无效,invalid socket id,1,socket id 無効 
+#define,INTERP_ERR_INVERSE_FAILED,0x0F2051,1,failed to do the inverse kinematics,逆解失败,failed to do the inverse kinematics,1,逆解失敗 
+#define,INTERP_ERR_FORWARD_FAILED,0x0F2052,1,failed to do the forward kinematics,正解失败,failed to do the forward kinematics,1,正解失敗 
+#define,INTERP_ERR_RECV_WRONG_DATA,0x0F2053,1,wrong data received via tcp/ip connection,TCP/IP 通讯接收到错误数据,wrong data received via tcp/ip connection,1,TCP/IP通信がエラーデータを受信 
+#define,INTERP_ERR_INVALID_ARRAY,0x0F2054,1,invalid array variable,数组变量无效,invalid array variable,1,配列変数が無効 
+#define,INTERP_ERR_INVALID_INDEX,0x0F2055,1,invalid array element index,元素索引无效,invalid array element index,1,要素インデックスが無効 
+#define,INTERP_ERR_INVALID_INTPL_RATIO,0x0F2056,1,invalid coefficiency for pose interpolation,位姿插值系数无效,invalid coefficiency for pose interpolation,1,ポーズの補間係数が無効です 
+#define,INTERP_ERR_UNMATCHED_STATMENT_END,0x0F2057,1,end token in control block does not match correctly,控制块结束符不匹配,end token in control block does not match correctly,1,制御ブロック内の終了トークンが正しく一致しません
+,,,,,,,,
+#define,VISION_CONNECT_FAILED,0x0F3001 ,1,failed to connect with specified camera,连接指定相机失败,failed to connect with specified camera,1,指定カメラ接続失敗 
+#define,VISION_NO_DEVICE_CONNECTED,0x0F3002,1,no visual device is now connected,没有连接视觉设备,no visual device is now connected,1,視覚設備見未接続 
+,,,,,,,,
+#define,CAN_MASTER_SERVO_MODE_ERROR ,0x0F4001,1,servo state machine error,伺服状态机错误,servo state machine error,1,サーボ状態マシンエラー
+,,,,,,,,
+,,,,,,,,
+,,,,,,,,
+伺服部分错误代码,,,,,,,,
+#define,DRIVE_ERR_PHASE_OVERCURRENT_J1,0x102320,1,joint 1 phase current over limit,关节一输出过流,joint 1 phase current over limit,1,関節一出力オーバー 
+#define,DRIVE_ERR_PHASE_OVERCURRENT_J2,0x112320,1,joint 2 phase current over limit,关节二输出过流,joint 2 phase current over limit,1,関節二出力オーバー 
+#define,DRIVE_ERR_PHASE_OVERCURRENT_J3,0x122320,1,joint 3 phase current over limit,关节三输出过流,joint 3 phase current over limit,1,関節三出力オーバー 
+#define,DRIVE_ERR_PHASE_OVERCURRENT_J4,0x132320,1,joint 4 phase current over limit,关节四输出过流,joint 4 phase current over limit,1,関節四出力オーバー 
+#define,DRIVE_ERR_PHASE_OVERCURRENT_J5,0x142320,1,joint 5 phase current over limit,关节五输出过流,joint 5 phase current over limit,1,関節五出力オーバー 
+#define,DRIVE_ERR_PHASE_OVERCURRENT_J6,0x152320,1,joint 6 phase current over limit,关节六输出过流,joint 6 phase current over limit,1,関節六出力オーバー 
+,,,,,,,,
+#define,DRIVE_ERR_ATUNE_OVERCURRENT_J1,0x102321,1,joint 1 auto tune current over limit,关节一自学习过流,joint 1 auto tune current over limit,1,関節一オートチューンオーバー 
+#define,DRIVE_ERR_ATUNE_OVERCURRENT_J2,0x112321,1,joint 2 auto tune current over limit,关节二自学习过流,joint 2 auto tune current over limit,1,関節二オートチューンオーバー 
+#define,DRIVE_ERR_ATUNE_OVERCURRENT_J3,0x122321,1,joint 3 auto tune current over limit,关节三自学习过流,joint 3 auto tune current over limit,1,関節三オートチューンオーバー 
+#define,DRIVE_ERR_ATUNE_OVERCURRENT_J4,0x132321,1,joint 4 auto tune current over limit,关节四自学习过流,joint 4 auto tune current over limit,1,関節四オートチューンオーバー 
+#define,DRIVE_ERR_ATUNE_OVERCURRENT_J5,0x142321,1,joint 5 auto tune current over limit,关节五自学习过流,joint 5 auto tune current over limit,1,関節五オートチューンオーバー 
+#define,DRIVE_ERR_ATUNE_OVERCURRENT_J6,0x152321,1,joint 6 auto tune current over limit,关节六自学习过流,joint 6 auto tune current over limit,1,関節六オートチューンオーバー 
+,,,,,,,,
+#define,DRIVE_ERR_SAME_DIR_OVERSPD_J1  ,0x108480,1,joint 1 same direction over speed,关节一同向超速,joint 1 same direction over speed,1,関節一同行速度オーバー 
+#define,DRIVE_ERR_SAME_DIR_OVERSPD_J2  ,0x118480,1,joint 2 same direction over speed,关节二同向超速,joint 2 same direction over speed,1,関節二同行速度オーバー 
+#define,DRIVE_ERR_SAME_DIR_OVERSPD_J3  ,0x128480,1,joint 3 same direction over speed,关节三同向超速,joint 3 same direction over speed,1,関節三同行速度オーバー 
+#define,DRIVE_ERR_SAME_DIR_OVERSPD_J4  ,0x138480,1,joint 4 same direction over speed,关节四同向超速,joint 4 same direction over speed,1,関節四同行速度オーバー 
+#define,DRIVE_ERR_SAME_DIR_OVERSPD_J5  ,0x148480,1,joint 5 same direction over speed,关节五同向超速,joint 5 same direction over speed,1,関節五同行速度オーバー 
+#define,DRIVE_ERR_SAME_DIR_OVERSPD_J6  ,0x158480,1,joint 6 same direction over speed,关节六同向超速,joint 6 same direction over speed,1,関節六同行速度オーバー 
+,,,,,,,,
+#define,DRIVE_ERR_REV_DIR_OVERSPD_J1,0x108481,1,joint 1 reverse direction over speed,关节一反向超速,joint 1 reverse direction over speed,1,関節一逆行速度オーバー 
+#define,DRIVE_ERR_REV_DIR_OVERSPD_J2  ,0x118481,1,joint 2 reverse direction over speed,关节二反向超速,joint 2 reverse direction over speed,1,関節二逆行速度オーバー 
+#define,DRIVE_ERR_REV_DIR_OVERSPD_J3  ,0x128481,1,joint 3 reverse direction over speed,关节三反向超速,joint 3 reverse direction over speed,1,関節三逆行速度オーバー 
+#define,DRIVE_ERR_REV_DIR_OVERSPD_J4  ,0x138481,1,joint 4 reverse direction over speed,关节四反向超速,joint 4 reverse direction over speed,1,関節四逆行速度オーバー 
+#define,DRIVE_ERR_REV_DIR_OVERSPD_J5  ,0x148481,1,joint 5 reverse direction over speed,关节五反向超速,joint 5 reverse direction over speed,1,関節五逆行速度オーバー 
+#define,DRIVE_ERR_REV_DIR_OVERSPD_J6  ,0x158481,1,joint 6 reverse direction over speed,关节六反向超速,joint 6 reverse direction over speed,1,関節六逆行速度オーバー 
+,,,,,,,,
+#define,DRIVE_ERR_OVER_MAX_SPD_J1,0x108482,1,joint 1 over max speed,关节一超过最大转速,joint 1 over max speed,1,関節一最大回転数超過 
+#define,DRIVE_ERR_OVER_MAX_SPD_J2,0x118482,1,joint 2 over max speed,关节二超过最大转速,joint 2 over max speed,1,関節二最大回転数超過 
+#define,DRIVE_ERR_OVER_MAX_SPD_J3  ,0x128482,1,joint 3 over max speed,关节三超过最大转速,joint 3 over max speed,1,関節三最大回転数超過 
+#define,DRIVE_ERR_OVER_MAX_SPD_J4,0x138482,1,joint 4 over max speed,关节四超过最大转速,joint 4 over max speed,1,関節四最大回転数超過 
+#define,DRIVE_ERR_OVER_MAX_SPD_J5  ,0x148482,1,joint 5 over max speed,关节五超过最大转速,joint 5 over max speed,1,関節五最大回転数超過 
+#define,DRIVE_ERR_OVER_MAX_SPD_J6   ,0x158482,1,joint 6 over max speed,关节六超过最大转速,joint 6 over max speed,1,関節六最大回転数超過 
+,,,,,,,,
+#define,DRIVE_ERR_SPD_LAG_ERR_J1  ,0x108483,1,joint 1 speed err too large,关节一速度跟踪误差过大,joint 1 speed err too large,1,関節一速度追跡誤差過大 
+#define,DRIVE_ERR_SPD_LAG_ERR_J2,0x118483,1,joint 2 speed err too large,关节二速度跟踪误差过大,joint 2 speed err too large,1,関節二速度追跡誤差過大 
+#define,DRIVE_ERR_SPD_LAG_ERR_J3  ,0x128483,1,joint 3 speed err too large,关节三速度跟踪误差过大,joint 3 speed err too large,1,関節三速度追跡誤差過大 
+#define,DRIVE_ERR_SPD_LAG_ERR_J4,0x138483,1,joint 4 speed err too large,关节四速度跟踪误差过大,joint 4 speed err too large,1,関節四速度追跡誤差過大 
+#define,DRIVE_ERR_SPD_LAG_ERR_J5,0x148483,1,joint 5 speed err too large,关节五速度跟踪误差过大,joint 5 speed err too large,1,関節五速度追跡誤差過大 
+#define,DRIVE_ERR_SPD_LAG_ERR_J6  ,0x158483,1,joint 6 speed err too large,关节六速度跟踪误差过大,joint 6 speed err too large,1,関節六速度追跡誤差過大 
+,,,,,,,,
+#define,DRIVE_ERR_OVER_MAX_ACC_J1,0x108484,1,joint 1 over max acceleration,关节一加速度超差,joint 1 over max acceleration,1,関節一最大加速度以上 
+#define,DRIVE_ERR_OVER_MAX_ACC_J2   ,0x118484,1,joint 2 over max acceleration,关节二加速度超差,joint 2 over max acceleration,1,関節二最大加速度以上 
+#define,DRIVE_ERR_OVER_MAX_ACC_J3,0x128484,1,joint 3 over max acceleration,关节三加速度超差,joint 3 over max acceleration,1,関節三最大加速度以上 
+#define,DRIVE_ERR_OVER_MAX_ACC_J4,0x138484,1,joint 4 over max acceleration,关节四加速度超差,joint 4 over max acceleration,1,関節四最大加速度以上 
+#define,DRIVE_ERR_OVER_MAX_ACC_J5  ,0x148484,1,joint 5 over max acceleration,关节五加速度超差,joint 5 over max acceleration,1,関節五最大加速度以上 
+#define,DRIVE_ERR_OVER_MAX_ACC_J6  ,0x158484,1,joint 6 over max acceleration,关节六加速度超差,joint 6 over max acceleration,1,関節六最大加速度以上 
+,,,,,,,,
+#define,DRIVE_ERR_SPD_STALL_ERR_J1  ,0x108485,1,joint 1 speed stall error,关节一电机失速,joint 1 speed stall error,1,関節一モーターストール 
+#define,DRIVE_ERR_SPD_STALL_ERR_J2  ,0x118485,1,joint 2 speed stall error,关节二电机失速,joint 2 speed stall error,1,関節二モーターストール 
+#define,DRIVE_ERR_SPD_STALL_ERR_J3   ,0x128485,1,joint 3 speed stall error,关节三电机失速,joint 3 speed stall error,1,関節三モーターストール 
+#define,DRIVE_ERR_SPD_STALL_ERR_J4   ,0x138485,1,joint 4 speed stall error,关节四电机失速,joint 4 speed stall error,1,関節四モーターストール 
+#define,DRIVE_ERR_SPD_STALL_ERR_J5   ,0x148485,1,joint 5 speed stall error,关节五电机失速,joint 5 speed stall error,1,関節五モーターストール 
+#define,DRIVE_ERR_SPD_STALL_ERR_J6   ,0x158485,1,joint 6 speed stall error,关节六电机失速,joint 6 speed stall error,1,関節六モーターストール 
+,,,,,,,,
+#define,DRIVE_ERR_ENC_TIMEOUT_J1,0x107380,1,joint 1 encoder connetion time out,关节一编码器连接超时,joint 1 encoder connetion time out,1,関節一エンコーダ接続タイムアウト 
+#define,DRIVE_ERR_ENC_TIMEOUT_J2  ,0x117380,1,joint 2 encoder connetion time out,关节二编码器连接超时,joint 2 encoder connetion time out,1,関節二エンコーダ接続タイムアウト 
+#define,DRIVE_ERR_ENC_TIMEOUT_J3  ,0x127380,1,joint 3 encoder connetion time out,关节三编码器连接超时,joint 3 encoder connetion time out,1,関節三エンコーダ接続タイムアウト 
+#define,DRIVE_ERR_ENC_TIMEOUT_J4  ,0x137380,1,joint 4 encoder connetion time out,关节四编码器连接超时,joint 4 encoder connetion time out,1,関節四エンコーダ接続タイムアウト 
+#define,DRIVE_ERR_ENC_TIMEOUT_J5  ,0x147380,1,joint 5 encoder connetion time out,关节五编码器连接超时,joint 5 encoder connetion time out,1,関節五エンコーダ接続タイムアウト 
+#define,DRIVE_ERR_ENC_TIMEOUT_J6  ,0x157380,1,joint 6 encoder connetion time out,关节六编码器连接超时,joint 6 encoder connetion time out,1,関節六エンコーダ接続タイムアウト 
+,,,,,,,,
+#define,DRIVE_ERR_ENC_BATTERY_ALM_J1,0x107381,1,joint 1 encoder battery low,关节一编码器电池欠压,joint 1 encoder battery low,1,関節一エンコーダのバッテリーが少ない 
+#define,DRIVE_ERR_ENC_BATTERY_ALM_J2,0x117381,1,joint 2 encoder battery low,关节二编码器电池欠压,joint 2 encoder battery low,1,関節二エンコーダのバッテリーが少ない 
+#define,DRIVE_ERR_ENC_BATTERY_ALM_J3,0x127381,1,joint 3 encoder battery low,关节三编码器电池欠压,joint 3 encoder battery low,1,関節三エンコーダのバッテリーが少ない 
+#define,DRIVE_ERR_ENC_BATTERY_ALM_J4,0x137381,1,joint 4 encoder battery low,关节四编码器电池欠压,joint 4 encoder battery low,1,関節四エンコーダのバッテリーが少ない 
+#define,DRIVE_ERR_ENC_BATTERY_ALM_J5,0x147381,1,joint 5 encoder battery low,关节五编码器电池欠压,joint 5 encoder battery low,1,関節五エンコーダのバッテリーが少ない 
+#define,DRIVE_ERR_ENC_BATTERY_ALM_J6,0x157381,1,joint 6 encoder battery low,关节六编码器电池欠压,joint 6 encoder battery low,1,関節六エンコーダのバッテリーが少ない 
+,,,,,,,,
+#define,DRIVE_ERR_ENC_BATTERY_ERR_J1,0x107382,1,joint 1 encoder battery disconnected,关节一编码器电池断开,joint 1 encoder battery disconnected,1,関節一エンコーダーバッテリーが切断されました 
+#define,DRIVE_ERR_ENC_BATTERY_ERR_J2,0x117382,1,joint 2 encoder battery disconnected,关节二编码器电池断开,joint 2 encoder battery disconnected,1,関節二エンコーダーバッテリーが切断されました 
+#define,DRIVE_ERR_ENC_BATTERY_ERR_J3,0x127382,1,joint 3 encoder battery disconnected,关节三编码器电池断开,joint 3 encoder battery disconnected,1,関節三エンコーダーバッテリーが切断されました 
+#define,DRIVE_ERR_ENC_BATTERY_ERR_J4,0x137382,1,joint 4 encoder battery disconnected,关节四编码器电池断开,joint 4 encoder battery disconnected,1,関節四エンコーダーバッテリーが切断されました 
+#define,DRIVE_ERR_ENC_BATTERY_ERR_J5,0x147382,1,joint 5 encoder battery disconnected,关节五编码器电池断开,joint 5 encoder battery disconnected,1,関節五エンコーダーバッテリーが切断されました 
+#define,DRIVE_ERR_ENC_BATTERY_ERR_J6,0x157382,1,joint 6 encoder battery disconnected,关节六编码器电池断开,joint 6 encoder battery disconnected,1,関節六エンコーダーバッテリーが切断されました 
+,,,,,,,,
+#define,DRIVE_ERR_ENC_EEPROM_ERR_J1,0x107383,1,joint 1 encoder e2prom error,关节一编码器存储角度错误,joint 1 encoder e2prom error,1,関節一エンコーダーe2promエラー 
+#define,DRIVE_ERR_ENC_EEPROM_ERR_J2   ,0x117383,1,joint 2 encoder e2prom error,关节二编码器存储角度错误,joint 2 encoder e2prom error,1,関節二エンコーダーe2promエラー 
+#define,DRIVE_ERR_ENC_EEPROM_ERR_J3   ,0x127383,1,joint 3 encoder e2prom error,关节三编码器存储角度错误,joint 3 encoder e2prom error,1,関節三エンコーダーe2promエラー 
+#define,DRIVE_ERR_ENC_EEPROM_ERR_J4   ,0x137383,1,joint 4 encoder e2prom error,关节四编码器存储角度错误,joint 4 encoder e2prom error,1,関節四エンコーダーe2promエラー 
+#define,DRIVE_ERR_ENC_EEPROM_ERR_J5   ,0x147383,1,joint 5 encoder e2prom error,关节五编码器存储角度错误,joint 5 encoder e2prom error,1,関節五エンコーダーe2promエラー 
+#define,DRIVE_ERR_ENC_EEPROM_ERR_J6   ,0x157383,1,joint 6 encoder e2prom error,关节六编码器存储角度错误,joint 6 encoder e2prom error,1,関節六エンコーダーe2promエラー 
+,,,,,,,,
+#define,DRIVE_ERR_ENC_COUNT_ERR_J1  ,0x107384,1,joint 1 encoder count error,关节一编码器计数错误,joint 1 encoder count error,1,関節一エンコーダカウントエラー 
+#define,DRIVE_ERR_ENC_COUNT_ERR_J2   ,0x117384,1,joint 2 encoder count error,关节二编码器计数错误,joint 2 encoder count error,1,関節二エンコーダカウントエラー 
+#define,DRIVE_ERR_ENC_COUNT_ERR_J3   ,0x127384,1,joint 3 encoder count error,关节三编码器计数错误,joint 3 encoder count error,1,関節三エンコーダカウントエラー 
+#define,DRIVE_ERR_ENC_COUNT_ERR_J4   ,0x137384,1,joint 4 encoder count error,关节四编码器计数错误,joint 4 encoder count error,1,関節四エンコーダカウントエラー 
+#define,DRIVE_ERR_ENC_COUNT_ERR_J5   ,0x147384,1,joint 5 encoder count error,关节五编码器计数错误,joint 5 encoder count error,1,関節五エンコーダカウントエラー 
+#define,DRIVE_ERR_ENC_COUNT_ERR_J6   ,0x157384,1,joint 6 encoder count error,关节六编码器计数错误,joint 6 encoder count error,1,関節六エンコーダカウントエラー 
+,,,,,,,,
+#define,DRIVE_ERR_ENC_DUAL_ERR_J1,0x107385,1,joint 1 bi-encoder ECC error,关节一双编码器校验错误,joint 1 bi-encoder ECC error,1,関節一ペアエンコーダ検証エラー 
+#define,DRIVE_ERR_ENC_DUAL_ERR_J2,0x117385,1,joint 2 bi-encoder ECC error,关节二双编码器校验错误,joint 2 bi-encoder ECC error,1,関節二ペアエンコーダ検証エラー 
+#define,DRIVE_ERR_ENC_DUAL_ERR_J3,0x127385,1,joint 3 bi-encoder ECC error,关节三双编码器校验错误,joint 3 bi-encoder ECC error,1,関節三ペアエンコーダ検証エラー 
+#define,DRIVE_ERR_ENC_DUAL_ERR_J4,0x137385,1,joint 4 bi-encoder ECC error,关节四双编码器校验错误,joint 4 bi-encoder ECC error,1,関節四ペアエンコーダ検証エラー 
+#define,DRIVE_ERR_ENC_DUAL_ERR_J5,0x147385,1,joint 5 bi-encoder ECC error,关节五双编码器校验错误,joint 5 bi-encoder ECC error,1,関節五ペアエンコーダ検証エラー 
+#define,DRIVE_ERR_ENC_DUAL_ERR_J6,0x157385,1,joint 6 bi-encoder ECC error,关节六双编码器校验错误,joint 6 bi-encoder ECC error,1,関節六ペアエンコーダ検証エラー 
+,,,,,,,,
+#define,DRIVE_ERR_ENC_Z_MISS_J1,0x107387    ,1,joint 1 Z catching error,关节一Z线捕捉故障,joint 1 Z catching error,1,関節一Z相捕捉故障 
+#define,DRIVE_ERR_ENC_Z_MISS_J2    ,0x117387,1,joint 2 Z catching error,关节二Z线捕捉故障,joint 2 Z catching error,1,関節二Z相捕捉故障 
+#define,DRIVE_ERR_ENC_Z_MISS_J3    ,0x127387,1,joint 3 Z catching error,关节三Z线捕捉故障,joint 3 Z catching error,1,関節三Z相捕捉故障 
+#define,DRIVE_ERR_ENC_Z_MISS_J4    ,0x137387,1,joint 4 Z catching error,关节四Z线捕捉故障,joint 4 Z catching error,1,関節四Z相捕捉故障 
+#define,DRIVE_ERR_ENC_Z_MISS_J5    ,0x147387,1,joint 5 Z catching error,关节五Z线捕捉故障,joint 5 Z catching error,1,関節五Z相捕捉故障 
+#define,DRIVE_ERR_ENC_Z_MISS_J6    ,0x157387,1,joint 6 Z catching error,关节六Z线捕捉故障,joint 6 Z catching error,1,関節六Z相捕捉故障 
+,,,,,,,,
+#define,DRIVE_ERR_POS_LAG_ERR_J1  ,0x108611    ,1,joint 1 position error too large,关节一位置偏差过大,joint 1 position error too large,1,関節一位置ずれ過大 
+#define,DRIVE_ERR_POS_LAG_ERR_J2  ,0x118611,1,joint 2 position error too large,关节二位置偏差过大,joint 2 position error too large,1,関節二位置ずれ過大 
+#define,DRIVE_ERR_POS_LAG_ERR_J3  ,0x128611,1,joint 3 position error too large,关节三位置偏差过大,joint 3 position error too large,1,関節三位置ずれ過大 
+#define,DRIVE_ERR_POS_LAG_ERR_J4  ,0x138611,1,joint 4 position error too large,关节四位置偏差过大,joint 4 position error too large,1,関節四位置ずれ過大 
+#define,DRIVE_ERR_POS_LAG_ERR_J5  ,0x148611,1,joint 5 position error too large,关节五位置偏差过大,joint 5 position error too large,1,関節五位置ずれ過大 
+#define,DRIVE_ERR_POS_LAG_ERR_J6  ,0x158611,1,joint 6 position error too large,关节六位置偏差过大,joint 6 position error too large,1,関節六位置ずれ過大 
+,,,,,,,,
+#define,DRIVE_ERR_POS_INC_OVER_LMT_J1  ,0x108612,1,joint 1 position increment over limit,关节一位置指令增量过大,joint 1 position increment over limit,1,関節一位置指令インクリメント過大 
+#define,DRIVE_ERR_POS_INC_OVER_LMT_J2  ,0x118612,1,joint 2 position increment over limit,关节二位置指令增量过大,joint 2 position increment over limit,1,関節二位置指令インクリメント過大 
+#define,DRIVE_ERR_POS_INC_OVER_LMT_J3  ,0x128612,1,joint 3 position increment over limit,关节三位置指令增量过大,joint 3 position increment over limit,1,関節三位置指令インクリメント過大 
+#define,DRIVE_ERR_POS_INC_OVER_LMT_J4  ,0x138612,1,joint 4 position increment over limit,关节四位置指令增量过大,joint 4 position increment over limit,1,関節四位置指令インクリメント過大 
+#define,DRIVE_ERR_POS_INC_OVER_LMT_J5  ,0x148612,1,joint 5 position increment over limit,关节五位置指令增量过大,joint 5 position increment over limit,1,関節五位置指令インクリメント過大 
+#define,DRIVE_ERR_POS_INC_OVER_LMT_J6  ,0x158612,1,joint 6 position increment over limit,关节六位置指令增量过大,joint 6 position increment over limit,1,関節六位置指令インクリメント過大 
+,,,,,,,,
+#define,DRIVE_ERR_POS_ACC_OVER_LMT_J1  ,0x108613,1,joint 1 acceleration over limit,关节一加速度过大,joint 1 acceleration over limit,1,関節一加速度過大 
+#define,DRIVE_ERR_POS_ACC_OVER_LMT_J2  ,0x118613,1,joint 2 acceleration over limit,关节二加速度过大,joint 2 acceleration over limit,1,関節二加速度過大 
+#define,DRIVE_ERR_POS_ACC_OVER_LMT_J3  ,0x128613,1,joint 3 acceleration over limit,关节三加速度过大,joint 3 acceleration over limit,1,関節三加速度過大 
+#define,DRIVE_ERR_POS_ACC_OVER_LMT_J4  ,0x138613,1,joint 4 acceleration over limit,关节四加速度过大,joint 4 acceleration over limit,1,関節四加速度過大 
+#define,DRIVE_ERR_POS_ACC_OVER_LMT_J5  ,0x148613,1,joint 5 acceleration over limit,关节五加速度过大,joint 5 acceleration over limit,1,関節五加速度過大 
+#define,DRIVE_ERR_POS_ACC_OVER_LMT_J6  ,0x158613,1,joint 6 acceleration over limit,关节六加速度过大,joint 6 acceleration over limit,1,関節六加速度過大 
+,,,,,,,,
+#define,DRIVE_ERR_POS_CMD_OVER_LMT_J1  ,0x108614,1,joint 1 command position over limit,关节一位置指令过大,joint 1 command position over limit,1,関節一位置指令が大きすぎ 
+#define,DRIVE_ERR_POS_CMD_OVER_LMT_J2  ,0x118614,1,joint 2 command position over limit,关节二位置指令过大,joint 2 command position over limit,1,関節二位置指令が大きすぎ 
+#define,DRIVE_ERR_POS_CMD_OVER_LMT_J3  ,0x128614,1,joint 3 command position over limit,关节三位置指令过大,joint 3 command position over limit,1,関節三位置指令が大きすぎ 
+#define,DRIVE_ERR_POS_CMD_OVER_LMT_J4  ,0x138614,1,joint 4 command position over limit,关节四位置指令过大,joint 4 command position over limit,1,関節四位置指令が大きすぎ 
+#define,DRIVE_ERR_POS_CMD_OVER_LMT_J5  ,0x148614,1,joint 5 command position over limit,关节五位置指令过大,joint 5 command position over limit,1,関節五位置指令が大きすぎ 
+#define,DRIVE_ERR_POS_CMD_OVER_LMT_J6  ,0x158614,1,joint 6 command position over limit,关节六位置指令过大,joint 6 command position over limit,1,関節六位置指令が大きすぎ 
+,,,,,,,,
+#define,DRIVE_ERR_CAN_OFF_LINE_J1  ,0x108615,1,joint 1 CAN off line,关节一CAN断线,joint 1 CAN off line,1,関節一CAN断線 
+#define,DRIVE_ERR_CAN_OFF_LINE_J2   ,0x118615,1,joint 2 CAN off line,关节二CAN断线,joint 2 CAN off line,1,関節二CAN断線 
+#define,DRIVE_ERR_CAN_OFF_LINE_J3   ,0x128615,1,joint 3 CAN off line,关节三CAN断线,joint 3 CAN off line,1,関節三CAN断線 
+#define,DRIVE_ERR_CAN_OFF_LINE_J4   ,0x138615,1,joint 4 CAN off line,关节四CAN断线,joint 4 CAN off line,1,関節四CAN断線 
+#define,DRIVE_ERR_CAN_OFF_LINE_J5   ,0x148615,1,joint 5 CAN off line,关节五CAN断线,joint 5 CAN off line,1,関節五CAN断線 
+#define,DRIVE_ERR_CAN_OFF_LINE_J6   ,0x158615,1,joint 6 CAN off line,关节六CAN断线,joint 6 CAN off line,1,関節六CAN断線 
+,,,,,,,,
+#define,DRIVE_ERR_UNDER_VOLTAGE_J1  ,0x103220,1,joint 1 servo under voltage,关节一伺服欠压,joint 1 servo under voltage,1,関節一サーボ電圧不足 
+#define,DRIVE_ERR_UNDER_VOLTAGE_J2   ,0x113220,1,joint 2 servo under voltage,关节二伺服欠压,joint 2 servo under voltage,1,関節二サーボ電圧不足 
+#define,DRIVE_ERR_UNDER_VOLTAGE_J3   ,0x123220,1,joint 3 servo under voltage,关节三伺服欠压,joint 3 servo under voltage,1,関節三サーボ電圧不足 
+#define,DRIVE_ERR_UNDER_VOLTAGE_J4   ,0x133220,1,joint 4 servo under voltage,关节四伺服欠压,joint 4 servo under voltage,1,関節四サーボ電圧不足 
+#define,DRIVE_ERR_UNDER_VOLTAGE_J5   ,0x143220,1,joint 5 servo under voltage,关节五伺服欠压,joint 5 servo under voltage,1,関節五サーボ電圧不足 
+#define,DRIVE_ERR_UNDER_VOLTAGE_J6   ,0x153220    ,1,joint 6 servo under voltage,关节六伺服欠压,joint 6 servo under voltage,1,関節六サーボ電圧不足 
+,,,,,,,,
+#define,DRIVE_ERR_OVER_VOLTAGE_J1  ,0x103210,1,joint 1 servo over voltage,关节一伺服过压,joint 1 servo over voltage,1,関節一サーボ電圧オーバー 
+#define,DRIVE_ERR_OVER_VOLTAGE_J2  ,0x113210,1,joint 2 servo over voltage,关节二伺服过压,joint 2 servo over voltage,1,関節二サーボ電圧オーバー 
+#define,DRIVE_ERR_OVER_VOLTAGE_J3,0x123210,1,joint 3 servo over voltage,关节三伺服过压,joint 3 servo over voltage,1,関節三サーボ電圧オーバー 
+#define,DRIVE_ERR_OVER_VOLTAGE_J4,0x133210,1,joint 4 servo over voltage,关节四伺服过压,joint 4 servo over voltage,1,関節四サーボ電圧オーバー 
+#define,DRIVE_ERR_OVER_VOLTAGE_J5  ,0x143210,1,joint 5 servo over voltage,关节五伺服过压,joint 5 servo over voltage,1,関節五サーボ電圧オーバー 
+#define,DRIVE_ERR_OVER_VOLTAGE_J6,0x153210,1,joint 6 servo over voltage,关节六伺服过压,joint 6 servo over voltage,1,関節六サーボ電圧オーバー 
+,,,,,,,,
+#define,DRIVE_ERR_DRIVER_OVERTEMP_J1  ,0x104310,1,joint 1 servo over temperature,关节一伺服过温,joint 1 servo over temperature,1,関節一サーボ温度オーバー 
+#define,DRIVE_ERR_DRIVER_OVERTEMP_J2  ,0x114310,1,joint 2 servo over temperature,关节二伺服过温,joint 2 servo over temperature,1,関節二サーボ温度オーバー 
+#define,DRIVE_ERR_DRIVER_OVERTEMP_J3  ,0x124310,1,joint 3 servo over temperature,关节三伺服过温,joint 3 servo over temperature,1,関節三サーボ温度オーバー 
+#define,DRIVE_ERR_DRIVER_OVERTEMP_J4  ,0x134310,1,joint 4 servo over temperature,关节四伺服过温,joint 4 servo over temperature,1,関節四サーボ温度オーバー 
+#define,DRIVE_ERR_DRIVER_OVERTEMP_J5  ,0x144310,1,joint 5 servo over temperature,关节五伺服过温,joint 5 servo over temperature,1,関節五サーボ温度オーバー 
+#define,DRIVE_ERR_DRIVER_OVERTEMP_J6  ,0x154310,1,joint 6 servo over temperature,关节六伺服过温,joint 6 servo over temperature,1,関節六サーボ温度オーバー 
+,,,,,,,,
+#define,DRIVE_ERR_IGBT_I2T_J1    ,0x102350,1,joint 1 power module overload,关节一模块过载（I2T）,joint 1 power module overload,1,関節一電源モジュールの過負荷
+#define,DRIVE_ERR_IGBT_I2T_J2    ,0x112350,1,joint 2 power module overload,关节二模块过载（I2T）,joint 2 power module overload,1,関節二電源モジュールの過負荷
+#define,DRIVE_ERR_IGBT_I2T_J3    ,0x122350,1,joint 3 power module overload,关节三模块过载（I2T）,joint 3 power module overload,1,関節三電源モジュールの過負荷
+#define,DRIVE_ERR_IGBT_I2T_J4    ,0x132350,1,joint 4 power module overload,关节四模块过载（I2T）,joint 4 power module overload,1,関節四電源モジュールの過負荷
+#define,DRIVE_ERR_IGBT_I2T_J5    ,0x142350,1,joint 5 power module overload,关节五模块过载（I2T）,joint 5 power module overload,1,関節五電源モジュールの過負荷
+#define,DRIVE_ERR_IGBT_I2T_J6    ,0x152350,1,joint 6 power module overload,关节六模块过载（I2T）,joint 6 power module overload,1,関節六電源モジュールの過負荷
+,,,,,,,,
+#define,DRIVE_ERR_OVER_POWER_J1,0x105480,1,joint 1 servo over power,关节一伺服过功率,joint 1 servo over power,1,関節一サーボ過負荷
+#define,DRIVE_ERR_OVER_POWER_J2,0x115480,1,joint 2 servo over power,关节二伺服过功率,joint 2 servo over power,1,関節二サーボ過負荷
+#define,DRIVE_ERR_OVER_POWER_J3,0x125480,1,joint 3 servo over power,关节三伺服过功率,joint 3 servo over power,1,関節三サーボ過負荷
+#define,DRIVE_ERR_OVER_POWER_J4,0x135480,1,joint 4 servo over power,关节四伺服过功率,joint 4 servo over power,1,関節四サーボ過負荷
+#define,DRIVE_ERR_OVER_POWER_J5,0x145480,1,joint 5 servo over power,关节五伺服过功率,joint 5 servo over power,1,関節五サーボ過負荷
+#define,DRIVE_ERR_OVER_POWER_J6,0x155480,1,joint 6 servo over power,关节六伺服过功率,joint 6 servo over power,1,関節六サーボ過負荷
+,,,,,,,,
+#define,DRIVE_ERR_ENC_AUTO_TURN_ERR_J1,0x103380,1,joint 1 encoder auto-turn eror,关节一编码器校零失败,joint 1 encoder auto-turn eror,1,関節一エンコーダ校正失敗 
+#define,DRIVE_ERR_ENC_AUTO_TURN_ERR_J2,0x113380,1,joint 2 encoder auto-turn eror,关节二编码器校零失败,joint 2 encoder auto-turn eror,1,関節二エンコーダ校正失敗 
+#define,DRIVE_ERR_ENC_AUTO_TURN_ERR_J3,0x123380,1,joint 3 encoder auto-turn eror,关节三编码器校零失败,joint 3 encoder auto-turn eror,1,関節三エンコーダ校正失敗 
+#define,DRIVE_ERR_ENC_AUTO_TURN_ERR_J4,0x133380,1,joint 4 encoder auto-turn eror,关节四编码器校零失败,joint 4 encoder auto-turn eror,1,関節四エンコーダ校正失敗 
+#define,DRIVE_ERR_ENC_AUTO_TURN_ERR_J5,0x143380,1,joint 5 encoder auto-turn eror,关节五编码器校零失败,joint 5 encoder auto-turn eror,1,関節五エンコーダ校正失敗 
+#define,DRIVE_ERR_ENC_AUTO_TURN_ERR_J6,0x153380,1,joint 6 encoder auto-turn eror,关节六编码器校零失败,joint 6 encoder auto-turn eror,1,関節六エンコーダ校正失敗 
+,,,,,,,,
+#define,DRIVE_ERR_OUT_LACK_PHASE_J1  ,0x103381,1,joint 1 out lack of phase,关节一输出缺相,joint 1 out lack of phase,1,関節一出力欠け 
+#define,DRIVE_ERR_OUT_LACK_PHASE_J2  ,0x113381,1,joint 2 out lack of phase,关节二输出缺相,joint 2 out lack of phase,1,関節二出力欠け 
+#define,DRIVE_ERR_OUT_LACK_PHASE_J3  ,0x123381,1,joint 3 out lack of phase,关节三输出缺相,joint 3 out lack of phase,1,関節三出力欠け 
+#define,DRIVE_ERR_OUT_LACK_PHASE_J4  ,0x133381,1,joint 4 out lack of phase,关节四输出缺相,joint 4 out lack of phase,1,関節四出力欠け 
+#define,DRIVE_ERR_OUT_LACK_PHASE_J5  ,0x143381,1,joint 5 out lack of phase,关节五输出缺相,joint 5 out lack of phase,1,関節五出力欠け 
+#define,DRIVE_ERR_OUT_LACK_PHASE_J6,0x153381,1,joint 6 out lack of phase,关节六输出缺相,joint 6 out lack of phase,1,関節六出力欠け 
+,,,,,,,,
+#define,DRIVE_ERR_IN_LACK_PHASE_J1,0x103130,1,joint 1 AC phase lack,关节一输入缺相,joint 1 AC phase lack,1,関節一入力位相損失
+#define,DRIVE_ERR_IN_LACK_PHASE_J2,0x113130,1,joint 2 AC phase lack,关节二输入缺相,joint 2 AC phase lack,1,関節二入力位相損失
+#define,DRIVE_ERR_IN_LACK_PHASE_J3,0x123130,1,joint 3 AC phase lack,关节三输入缺相,joint 3 AC phase lack,1,関節三入力位相損失
+#define,DRIVE_ERR_IN_LACK_PHASE_J4,0x133130,1,joint 4 AC phase lack,关节四输入缺相,joint 4 AC phase lack,1,関節四入力位相損失
+#define,DRIVE_ERR_IN_LACK_PHASE_J5,0x143130,1,joint 5 AC phase lack,关节五输入缺相,joint 5 AC phase lack,1,関節五入力位相損失
+#define,DRIVE_ERR_IN_LACK_PHASE_J6,0x153130,1,joint 6 AC phase lack,关节六输入缺相,joint 6 AC phase lack,1,関節六入力位相損失
+,,,,,,,,
+#define,DRIVE_ERR_INER_CONNECT_ERR_J1,0x105441,1,joint 1 internal connection error,关节一内部连接错误,joint 1 internal connection error,1,関節一内部配線エラー
+#define,DRIVE_ERR_INER_CONNECT_ERR_J2,0x115441,1,joint 2 internal connection error,关节二内部连接错误,joint 2 internal connection error,1,関節二内部配線エラー
+#define,DRIVE_ERR_INER_CONNECT_ERR_J3,0x125441,1,joint 3 internal connection error,关节三内部连接错误,joint 3 internal connection error,1,関節三内部配線エラー
+#define,DRIVE_ERR_INER_CONNECT_ERR_J4,0x135441,1,joint 4 internal connection error,关节四内部连接错误,joint 4 internal connection error,1,関節四内部配線エラー
+#define,DRIVE_ERR_INER_CONNECT_ERR_J5,0x145441,1,joint 5 internal connection error,关节五内部连接错误,joint 5 internal connection error,1,関節五内部配線エラー
+#define,DRIVE_ERR_INER_CONNECT_ERR_J6,0x155441,1,joint 6 internal connection error,关节六内部连接错误,joint 6 internal connection error,1,関節六内部配線エラー
+,,,,,,,,
+#define,DRIVE_ERR_PARA_ERROR_J1      ,0x105280,1,joint 1 internal parameter error,关节一内部参数错误,joint 1 internal parameter error,1,関節一内部パラメーターエラー
+#define,DRIVE_ERR_PARA_ERROR_J2      ,0x115280,1,joint 2 internal parameter error,关节二内部参数错误,joint 2 internal parameter error,1,関節二内部パラメーターエラー
+#define,DRIVE_ERR_PARA_ERROR_J3      ,0x125280,1,joint 3 internal parameter error,关节三内部参数错误,joint 3 internal parameter error,1,関節三内部パラメーターエラー
+#define,DRIVE_ERR_PARA_ERROR_J4      ,0x135280,1,joint 4 internal parameter error,关节四内部参数错误,joint 4 internal parameter error,1,関節四内部パラメーターエラー
+#define,DRIVE_ERR_PARA_ERROR_J5      ,0x145280,1,joint 5 internal parameter error,关节五内部参数错误,joint 5 internal parameter error,1,関節五内部パラメーターエラー
+#define,DRIVE_ERR_PARA_ERROR_J6      ,0x155280,1,joint 6 internal parameter error,关节六内部参数错误,joint 6 internal parameter error,1,関節六内部パラメーターエラー
+,,,,,,,,
+#define,DRIVE_ERR_PID_OVERFLOW_J1,0x105281,1,joint 1 drive PID overflow,关节一PID运算溢出,joint 1 drive PID overflow,1,関節一PID操作のオーバーフロー
+#define,DRIVE_ERR_PID_OVERFLOW_J2,0x115281,1,joint 2 drive PID overflow,关节二PID运算溢出,joint 2 drive PID overflow,1,関節二PID操作のオーバーフロー
+#define,DRIVE_ERR_PID_OVERFLOW_J3,0x125281,1,joint 3 drive PID overflow,关节三PID运算溢出,joint 3 drive PID overflow,1,関節三PID操作のオーバーフロー
+#define,DRIVE_ERR_PID_OVERFLOW_J4,0x135281,1,joint 4 drive PID overflow,关节四PID运算溢出,joint 4 drive PID overflow,1,関節四PID操作のオーバーフロー
+#define,DRIVE_ERR_PID_OVERFLOW_J5,0x145281,1,joint 5 drive PID overflow,关节五PID运算溢出,joint 5 drive PID overflow,1,関節五PID操作のオーバーフロー
+#define,DRIVE_ERR_PID_OVERFLOW_J6,0x155281,1,joint 6 drive PID overflow,关节六PID运算溢出,joint 6 drive PID overflow,1,関節六PID操作のオーバーフロー
+,,,,,,,,
+#define,DRIVE_ERR_RobotSerie_ERR_J1  ,0x105211,1,joint 1 type selection error,关节一型号选择错误,joint 1 type selection error,1,関節一タイプ選択エラー
+#define,DRIVE_ERR_RobotSerie_ERR_J2  ,0x115211,1,joint 2 type selection error,关节二型号选择错误,joint 2 type selection error,1,関節二タイプ選択エラー
+#define,DRIVE_ERR_RobotSerie_ERR_J3  ,0x125211,1,joint 3 type selection error,关节三型号选择错误,joint 3 type selection error,1,関節三タイプ選択エラー
+#define,DRIVE_ERR_RobotSerie_ERR_J4  ,0x135211,1,joint 4 type selection error,关节四型号选择错误,joint 4 type selection error,1,関節四タイプ選択エラー
+#define,DRIVE_ERR_RobotSerie_ERR_J5  ,0x145211,1,joint 5 type selection error,关节五型号选择错误,joint 5 type selection error,1,関節五タイプ選択エラー
+#define,DRIVE_ERR_RobotSerie_ERR_J6  ,0x155211,1,joint 6 type selection error,关节六型号选择错误,joint 6 type selection error,1,関節六タイプ選択エラー
+,,,,,,,,
+#define,DRIVE_ERR_MOTOR_OVERTEMP_J1  ,0x104210,1,joint 1 motor overheating,关节一电机过温,joint 1 motor overheating,1,関節一モーターの温度が高すぎる
+#define,DRIVE_ERR_MOTOR_OVERTEMP_J2  ,0x114210,1,joint 2 motor overheating,关节二电机过温,joint 2 motor overheating,1,関節二モーターの温度が高すぎる
+#define,DRIVE_ERR_MOTOR_OVERTEMP_J3  ,0x124210,1,joint 3 motor overheating,关节三电机过温,joint 3 motor overheating,1,関節三モーターの温度が高すぎる
+#define,DRIVE_ERR_MOTOR_OVERTEMP_J4  ,0x134210,1,joint 4 motor overheating,关节四电机过温,joint 4 motor overheating,1,関節四モーターの温度が高すぎる
+#define,DRIVE_ERR_MOTOR_OVERTEMP_J5  ,0x144210,1,joint 5 motor overheating,关节五电机过温,joint 5 motor overheating,1,関節五モーターの温度が高すぎる
+#define,DRIVE_ERR_MOTOR_OVERTEMP_J6  ,0x154210,1,joint 6 motor overheating,关节六电机过温,joint 6 motor overheating,1,関節六モーターの温度が高すぎる
+,,,,,,,,
+,,,,,,,,
+#define,DRIVE_ERR_POWER_ID_ERR_J1   ,0x105210,1,joint 1 power id error,关节一PowerID错误,joint 1 power id error,1,関節一PowerIDエラー 
+#define,DRIVE_ERR_POWER_ID_ERR_J2   ,0x115210,1,joint 2 power id error,关节二PowerID错误,joint 2 power id error,1,関節二PowerIDエラー 
+#define,DRIVE_ERR_POWER_ID_ERR_J3   ,0x125210,1,joint 3 power id error,关节三PowerID错误,joint 3 power id error,1,関節三PowerIDエラー 
+#define,DRIVE_ERR_POWER_ID_ERR_J4  ,0x135210,1,joint 4 power id error,关节四PowerID错误,joint 4 power id error,1,関節四PowerIDエラー 
+#define,DRIVE_ERR_POWER_ID_ERR_J5,0x145210,1,joint 5 power id error,关节五PowerID错误,joint 5 power id error,1,関節五PowerIDエラー 
+#define,DRIVE_ERR_POWER_ID_ERR_J6  ,0x155210,1,joint 6 power id error,关节六PowerID错误,joint 6 power id error,1,関節六PowerIDエラー 
+,,,,,,,,
+#define,DRIVE_ERR_EEPROM_ERR_J1   ,0x105282,1,joint 1 eeprom error,关节一EEPROM错误,joint 1 eeprom error,1,関節一EEPROMエラー 
+#define,DRIVE_ERR_EEPROM_ERR_J2   ,0x115282,1,joint 2 eeprom error,关节二EEPROM错误,joint 2 eeprom error,1,関節二EEPROMエラー 
+#define,DRIVE_ERR_EEPROM_ERR_J3   ,0x125282,1,joint 3 eeprom error,关节三EEPROM错误,joint 3 eeprom error,1,関節三EEPROMエラー 
+#define,DRIVE_ERR_EEPROM_ERR_J4   ,0x135282,1,joint 4 eeprom error,关节四EEPROM错误,joint 4 eeprom error,1,関節四EEPROMエラー 
+#define,DRIVE_ERR_EEPROM_ERR_J5   ,0x145282,1,joint 5 eeprom error,关节五EEPROM错误,joint 5 eeprom error,1,関節五EEPROMエラー 
+#define,DRIVE_ERR_EEPROM_ERR_J6       ,0x155282,1,joint 6 eeprom error,关节六EEPROM错误,joint 6 eeprom error,1,関節六EEPROMエラー 
+,,,,,,,,
+#define,DRIVE_ERR_POWERON_FAILED_J1  ,0x105283,1,joint 1 failed to power on,关节一上使能失败,joint 1 failed to power on,1,関節一動く失敗 
+#define,DRIVE_ERR_POWERON_FAILED_J2  ,0x115283,1,joint 2 failed to power on,关节二上使能失败,joint 2 failed to power on,1,関節二動く失敗 
+#define,DRIVE_ERR_POWERON_FAILED_J3  ,0x125283,1,joint 3 failed to power on,关节三上使能失败,joint 3 failed to power on,1,関節三動く失敗 
+#define,DRIVE_ERR_POWERON_FAILED_J4  ,0x135283,1,joint 4 failed to power on,关节四上使能失败,joint 4 failed to power on,1,関節四動く失敗 
+#define,DRIVE_ERR_POWERON_FAILED_J5  ,0x145283,1,joint 5 failed to power on,关节五上使能失败,joint 5 failed to power on,1,関節五動く失敗 
+#define,DRIVE_ERR_POWERON_FAILED_J6 ,0x155283,1,joint 6 failed to power on,关节六上使能失败,joint 6 failed to power on,1,関節六動く失敗 
+,,,,,,,,
+#define,DRIVE_ERR_ENC_OVERTEMP_J1,0x106010,2,joint 1 encoder over temperature,关节一编码器温度过热,joint 1 encoder over temperature,1,関節一エンコーダ温度過熱 
+#define,DRIVE_ERR_ENC_OVERTEMP_J2 ,0x116010,2,joint 2 encoder over temperature,关节二编码器温度过热,joint 2 encoder over temperature,1,関節二エンコーダ温度過熱 
+#define,DRIVE_ERR_ENC_OVERTEMP_J3,0x126010,2,joint 3 encoder over temperature,关节三编码器温度过热,joint 3 encoder over temperature,1,関節三エンコーダ温度過熱 
+#define,DRIVE_ERR_ENC_OVERTEMP_J4,0x136010,2,joint 4 encoder over temperature,关节四编码器温度过热,joint 4 encoder over temperature,1,関節四エンコーダ温度過熱 
+#define,DRIVE_ERR_ENC_OVERTEMP_J5 ,0x146010,2,joint 5 encoder over temperature,关节五编码器温度过热,joint 5 encoder over temperature,1,関節五エンコーダ温度過熱 
+#define,DRIVE_ERR_ENC_OVERTEMP_J6 ,0x156010,2,joint 6 encoder over temperature,关节六编码器温度过热,joint 6 encoder over temperature,1,関節六エンコーダ温度過熱 
+,,,,,,,,
+#define,DRIVE_ERR_MOTOR_I2T_J1    ,0x107180,1,joint 1 motor I2T,关节一电机过载(I2T),joint 1 motor I2T,1,関節一モータ過負荷(I2T) 
+#define,DRIVE_ERR_MOTOR_I2T_J2,0x117180,1,joint 2 motor I2T,关节二电机过载(I2T),joint 2 motor I2T,1,関節二モータ過負荷(I2T) 
+#define,DRIVE_ERR_MOTOR_I2T_J3,0x127180,1,joint 3 motor I2T,关节三电机过载(I2T),joint 3 motor I2T,1,関節三モータ過負荷(I2T) 
+#define,DRIVE_ERR_MOTOR_I2T_J4   ,0x137180,1,joint 4 motor I2T,关节四电机过载(I2T),joint 4 motor I2T,1,関節四モータ過負荷(I2T) 
+#define,DRIVE_ERR_MOTOR_I2T_J5   ,0x147180,1,joint 5 motor I2T,关节五电机过载(I2T),joint 5 motor I2T,1,関節五モータ過負荷(I2T) 
+#define,DRIVE_ERR_MOTOR_I2T_J6   ,0x157180,1,joint 6 motor I2T,关节六电机过载(I2T),joint 6 motor I2T,1,関節六モータ過負荷(I2T) 
+,,,,,,,,
+#define,DRIVE_ERR_BRAKE_ERR_J1,0x107181,1,joint 1 brake error,关节一电机抱闸故障,joint 1 brake error,1,関節一電機ブレーキ故障  
+#define,DRIVE_ERR_BRAKE_ERR_J2,0x117181,1,joint 2 brake error,关节二电机抱闸故障,joint 2 brake error,1,関節二電機ブレーキ故障  
+#define,DRIVE_ERR_BRAKE_ERR_J3,0x127181,1,joint 3 brake error,关节三电机抱闸故障,joint 3 brake error,1,関節三電機ブレーキ故障  
+#define,DRIVE_ERR_BRAKE_ERR_J4   ,0x137181,1,joint 4 brake error,关节四电机抱闸故障,joint 4 brake error,1,関節四電機ブレーキ故障  
+#define,DRIVE_ERR_BRAKE_ERR_J5,0x147181,1,joint 5 brake error,关节五电机抱闸故障,joint 5 brake error,1,関節五電機ブレーキ故障  
+#define,DRIVE_ERR_BRAKE_ERR_J6   ,0x157181,1,joint 6 brake error,关节六电机抱闸故障,joint 6 brake error,1,関節六電機ブレーキ故障  
+,,,,,,,,
+#define,DRIVE_ERR_ENC_INTERNAL_ERR_J1,0x107386,1,joint 1 encoder internal error,关节一编码器内部错误,joint 1 encoder internal error,1,関節一エンコーダ内部エラー 
+#define,DRIVE_ERR_ENC_INTERNAL_ERR_J2,0x117386,1,joint 2 encoder internal error,关节二编码器内部错误,joint 2 encoder internal error,1,関節二エンコーダ内部エラー 
+#define,DRIVE_ERR_ENC_INTERNAL_ERR_J3,0x127386,1,joint 3 encoder internal error,关节三编码器内部错误,joint 3 encoder internal error,1,関節三エンコーダ内部エラー 
+#define,DRIVE_ERR_ENC_INTERNAL_ERR_J4,0x137386,1,joint 4 encoder internal error,关节四编码器内部错误,joint 4 encoder internal error,1,関節四エンコーダ内部エラー 
+#define,DRIVE_ERR_ENC_INTERNAL_ERR_J5,0x147386,1,joint 5 encoder internal error,关节五编码器内部错误,joint 5 encoder internal error,1,関節五エンコーダ内部エラー 
+#define,DRIVE_ERR_ENC_INTERNAL_ERR_J6,0x157386,1,joint 6 encoder internal error,关节六编码器内部错误,joint 6 encoder internal error,1,関節六エンコーダ内部エラー 
+,,,,,,,,
+#define,DRIVE_ERR_UNMATCHED_VERSION_J1  ,0x107580,1,joint 1 unmatched servo version,关节一伺服版本不匹配,joint 1 unmatched servo version,1,関節一サーボバージョン合わない 
+#define,DRIVE_ERR_UNMATCHED_VERSION_J2  ,0x117580,1,joint 2 unmatched servo version,关节二伺服版本不匹配,joint 2 unmatched servo version,1,関節二サーボバージョン合わない 
+#define,DRIVE_ERR_UNMATCHED_VERSION_J3  ,0x127580,1,joint 3 unmatched servo version,关节三伺服版本不匹配,joint 3 unmatched servo version,1,関節三サーボバージョン合わない 
+#define,DRIVE_ERR_UNMATCHED_VERSION_J4  ,0x137580,1,joint 4 unmatched servo version,关节四伺服版本不匹配,joint 4 unmatched servo version,1,関節四サーボバージョン合わない 
+#define,DRIVE_ERR_UNMATCHED_VERSION_J5  ,0x147580,1,joint 5 unmatched servo version,关节五伺服版本不匹配,joint 5 unmatched servo version,1,関節五サーボバージョン合わない 
+#define,DRIVE_ERR_UNMATCHED_VERSION_J6  ,0x157580,1,joint 6 unmatched servo version,关节六伺服版本不匹配,joint 6 unmatched servo version,1,関節六サーボバージョン合わない 
+,,,,,,,,
+#define ,DRIVE_ERR_FUSE_DISCONNECTED_J1,0x103211,1,joint 1 fuse disconnected,关节一保险丝断路,joint 1 fuse disconnected,1,関節一ヒューズを開く
+#define ,DRIVE_ERR_FUSE_DISCONNECTED_J2,0x113211,1,joint 2 fuse disconnected,关节二保险丝断路,joint 2 fuse disconnected,1,関節二ヒューズを開く
+#define ,DRIVE_ERR_FUSE_DISCONNECTED_J3,0x123211,1,joint 3 fuse disconnected,关节三保险丝断路,joint 3 fuse disconnected,1,関節三ヒューズを開く
+#define ,DRIVE_ERR_FUSE_DISCONNECTED_J4,0x133211,1,joint 4 fuse disconnected,关节四保险丝断路,joint 4 fuse disconnected,1,関節四ヒューズを開く
+#define ,DRIVE_ERR_FUSE_DISCONNECTED_J5,0x143211,1,joint 5 fuse disconnected,关节五保险丝断路,joint 5 fuse disconnected,1,関節五ヒューズを開く
+#define ,DRIVE_ERR_FUSE_DISCONNECTED_J6,0x153211,1,joint 6 fuse disconnected,关节六保险丝断路,joint 6 fuse disconnected,1,関節六ヒューズを開く
+,,,,,,,,
+,,,,,,,,
+,,,,,,,,
+扩展IO模块错误代码,,,,,,,,
+#define,EXTIO_ERR_INIT_RTU_CONNECTION,0x201102,1,filed to create rtu connection during initialization,初始化期间 创建rtu失败,filed to create rtu connection during initialization,1,初期化間にRTU構築失敗 
+#define,EXTIO_ERR_INIT_TCP_CONNECTION,0x201202,1,filed to create tcp connection during initialization,初始化期间 创建tcp失败,filed to create tcp connection during initialization,1,初期化間にTCP構築失敗 
+#define,EXTIO_ERR_INIT_UNKNOWN,0x201304,1,unknown error during initalization,初始化期间未知错误,unknown error during initalization,1,初期化間に未知エラー 
+#define,EXTIO_ERR_INIT_RTU_INCONSISTENT,0x201101,1,rtu inconsistent during initialization,扩展IO初始化失败 MODBUS-RTU通讯参数不匹配,rtu inconsistent during initialization,1,拡張IO初期化失敗、MODBUS-RTU通信パラメータが一致していない 
+#define,EXTIO_ERR_INIT_TCP_FORMAT,0x201201,1,tcp format error during initialization,扩展IO初始化失败 MODBUS-TCP通讯参数格式错误,tcp format error during initialization,1,拡張IO初期化失敗、MODBUS-RTU通信パラメータの格式エラー 
+#define,EXTIO_ERR_RUNTIME_RTU_OFFLINE,0x202103,1,rtu node offline during runtime,扩展IO运行时失败 MODBUS-RTU节点断线,rtu node offline during runtime,1,拡張IO運転失敗、MODBUS-RTUノード断線 
+#define,EXTIO_ERR_RUNTIME_TCP_OFFLINE,0x202102,1,tcp node offline during runtime,扩展IO运行时失败 MODBUS-TCP节点断线,tcp node offline during runtime,1,拡張IO運転失敗、MODBUS-TCPノード断線 
+,,,,,,,,
+,,,,,,,,
+,,,,,,,,
+传感器以及SCB模块错误代码,,,,,,,,
+#define,TORQSENSOR_ERR_FAILED_INIT_CONN,0x3F0001,1,failed to initialize the connection with torque sensor,力矩传感器连接初始化失败,failed to initialize the connection with torque sensor,1,トルクセンサ接続初期化失敗 
+#define,TORQSENSOR_ERR_CANNOT_RECV_DATA,0x3F1001,1,cannot receive data from torque sensor,接收力矩传感器数据失败,cannot receive data from torque sensor,1,トルクセンサデータ受信失敗 
+#define,TORQSENSOR_ERR_RECV_WRONG_DATA,0x3F1002,1,wrong data is received from torque sensor,接收力矩传感器数据格式错误,wrong data is received from torque sensor,1,トルクセンサデータ受信フォーマットエラー 
+,,,,,,,,
+#define,SCB_ERR_PDU_TEMPERATURE_ABNORMAL,0x304281,2,PDUtemperature anomaly,PDU温度异常,PDUtemperature anomaly,1,PDU温度異常 
+#define,SCB_ERR_5V_VOLTAGE_ABNORMAL,0x303281,2,5V anomaly(The fluctuation range of the supply voltage),5V异常（电源电压的波动范围）,5V anomaly(The fluctuation range of the supply voltage),1,5V異常(電源電圧変動範囲) 
+#define,SCB_ERR_12V_VOLTAGE_ABNORMAL,0x303282,2,12V anomaly(The fluctuation range of the supply voltage),12V异常（电源电压的波动范围）,12V anomaly(The fluctuation range of the supply voltage),1,12V異常(電源電圧変動範囲) 
+#define,SCB_ERR_24V_VOLTAGE_ABNORMAL,0x303283,2,24V anomaly(The fluctuation range of the supply voltage),24V异常（电源电压的波动范围）,24V anomaly(The fluctuation range of the supply voltage),1,24V異常(電源電圧変動範囲) 
+#define,SCB_ERR_220V_VOLTAGE_ABNORMAL,0x303181,2,220V power supply abnormal,220V供电异常,220V power supply abnormal,1,220V給電異常 
+#define,SCB_ERR_220V_PWR_RALAY_ABNORMAL,0x303182,2,The main supply relay is abnormal,主供电继电器异常,The main supply relay is abnormal,1,主電源/給電リレー異常 
+#define,SCB_ERR_OUT_BODY_SUPPLY_ABNORMAL,0x303381,2,Abnormal supply voltage of output body(The fluctuation range of the supply voltage),输出本体供电电压异常（电源电压的波动范围）,Abnormal supply voltage of output body(The fluctuation range of the supply voltage),1,出力本体の給電電圧異常(電源電圧変動範囲） 
+#define,SCB_ERR_USR_IO_SUPPLY_ABNORMAL,0x302384,2,Abnormal supply current of user IO (2.3a),用户IO供电电流异常（2.3A),Abnormal supply current of user IO (2.3a),1,ユーザーIO給電電流異常(2.3A) 
+#define,SCB_ERR_IPC_CURRENT_ABNORMAL,0x302385,2,"Abnormal ipc current (if ipc current exceeds 1.5a, ipc short-circuit fault is considered and error is reported)",工控机电流异常（工控机电流超过1.5A则认为工控机短路故障，上报错误）,"Abnormal ipc current (if ipc current exceeds 1.5a, ipc short-circuit fault is considered and error is reported)",1,異常なIPC電流（>1.5A)
+#define,SCB_ERR_FAN_CURRENT_ABNORMAL,0x302380,2,Fan current anomaly,风扇电流异常,Fan current anomaly,1,ファン電流異常 
+#define,SCB_ERR_BODY_SUPPLY_ABNORMAL_L1,0x302381,2,Output body supply current abnormal level 1 warning:25A,输出本体供电电流异常1级预警：25A,Output body supply current abnormal level 1 warning:25A,1,出力本体の給電電流異常1級警報：25A 
+#define,SCB_ERR_BODY_SUPPLY_ABNORMAL_L2,0x302382,2,Output body supply current abnormal level 2 warning:31.25A,输出本体供电电流异常2级预警：31.25A,Output body supply current abnormal level 2 warning:31.25A,1,出力本体の給電電流異常2級警報：31.25A 
+#define,SCB_ERR_BODY_SUPPLY_ABNORMAL_L3,0x302383,2,Output body supply current abnormal level 3 warning:37.25A,输出本体供电电流异常3级预警：37.25A,Output body supply current abnormal level 3 warning:37.25A,1,出力本体の給電電流異常3級警報：37.25A 
+#define,SCB_ERR_DRAG_OVER_SPEED,0x309081,2,Tool center drag over speed,拖拽TCP速度超限,Tool center drag over speed,1,ドラッグTCP速度リミット超え 
+#define,SCB_ERR_EMEGENCY_STOP,0x309082,2,Emergency Stop!!,紧急停止,Emergency Stop!!,1,ハンドル急停止、或いはユーザー急停止 
+#define,SCB_ERR_BP_CAN_COMM_ABNORMAL,0x308181,2,Button panel communication abnormal,手柄CAN通信中断,Button panel communication abnormal,1,ハンドルCAN通信中断 
+#define,SCB_ERR_CTRL_CAN_COMM_ABNORMAL,0x308182,2,Controller communication abnormal,控制器CAN通信中断,Controller communication abnormal,1,コントローラCAN通信中断 
+#define,SCB_ERR_BODY_CAN_COMM_ABNORMAL,0x308183,2,Ontology CAN communication is interrupted,本体CAN通信中断,Ontology CAN communication is interrupted,1,本体CAN通信中断 
+#define,SCB_ERR_TIO_CAN_COMM_ABBORMAL,0x308184,2,TIO CAN communication is interrupted,TIO CAN通信中断,TIO CAN communication is interrupted,1,TIO　CAN通信中断 
+#define,SCB_ERR_CAN_NORMAL_WAIT_TIMEOUT,0x308185,2,Wait CAN communication normal timeout,等待CAN通信正常超时,Wait CAN communication normal timeout,1,CAN通信正常を待つタイムアオト 
+#define,SCB_ERR_BP_ESTOP_INCONSISTENT,0x305081,2,Stick emergency stop signal inconsistent,手柄急停信号不一致,Stick emergency stop signal inconsistent,1,スティック緊急停止信号エラー
+#define,SCB_ERR_USR_ESTOP_INCONSISTENT,0x305082,2,User emergency stop signal input inconsistent,用户急停信号输入不一致,User emergency stop signal input inconsistent,1,ユーザー緊急停止信号エラー
+#define,SCB_ERR_PROTECT_STOP_INCONSISTENT  ,0x305083,2,Inconsistent protective stop signal input,保护性停止信号输入不一致,Inconsistent protective stop signal input,1,保護停止信号エラー
+,,,,,,,,
+,,,,,,,,
+其他,,,,,,,,
+#define,MISCELLANEOUS_ERROR,0x0FFFFE,1,miscellaneous error,其它错误,miscellaneous error,1,その他のエラー 
+#define,UNKNOWN_ERROR,0x0FFFFF,1,unknown error,未知错误,unknown error,1,未知のエラー 
